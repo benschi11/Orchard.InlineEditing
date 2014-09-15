@@ -59,6 +59,16 @@
         console.log('Finalized Editor');
     });
 
+    $inlineedit.bind(inlineedit.events.onCancelling, function (event, shape, shapeEditor) {
+
+        console.log(shapeEditor);
+
+        var editorFieldId = $(shapeEditor).find(".tinymce").attr("id");
+        tinymce.get(editorFieldId).remove();
+
+
+    });
+
     var editor = {
         
     };
