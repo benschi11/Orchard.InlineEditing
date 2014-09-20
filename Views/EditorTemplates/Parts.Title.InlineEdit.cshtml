@@ -1,11 +1,36 @@
-﻿@using Orchard.Core.Title.Models
+﻿@using Orchard.ContentManagement
+@using Orchard.Core.Title.Models
+@using Orchard.Environment.Descriptor.Models
 @using Orchard.InlineEditing
 @{
-    Script.Require("InlineEditor_DefaultEditor");
-    
     var titlePart = (TitlePart)Model.DisplayShape.ContentPart;
+    var shellDescriptor = WorkContext.Resolve<ShellDescriptor>();
+
+
 }
 
-@using (Html.InlineEdit(this)) {
-    @Html.TextBox("Title", titlePart.Title, new { @class = "large text", autofocus = "autofocus" })
+
+
+
+@using (Html.InlineEdit(this))
+{
+
+    <script type="text/javascript">
+        var mediaPickerEnabled = @(shellDescriptor.Features.Any(x => x.Name == "Orchard.MediaPicker") ? "true" : "false");
+        var mediaLibraryEnabled = @(shellDescriptor.Features.Any(x => x.Name == "Orchard.MediaLibrary") ? "true" : "false");
+        var directionality = '@Html.Directionality((IContent)Model.ContentItem)';
+    </script>
+
+    Script.Require("OrchardTinyMce");
+    Script.Include("orchard-inlineedit-textfield.js");
+
+    @Html.TextBox("Title", titlePart.Title, new Dictionary<string, object> {
+        {"style", "display:none"}}
+     );
+
+    <h1>
+        <div class="html tinymce" style="width:100%" id="@Html.Id("Title")" data-fieldid="Title_Title">
+            @titlePart.Title
+        </div>
+    </h1>
 }

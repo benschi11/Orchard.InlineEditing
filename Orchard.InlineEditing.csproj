@@ -69,6 +69,8 @@
     <None Include="placement.info" />
     <Content Include="Module.txt" />
     <Content Include="Scripts\orchard-inlineedit-markdowneditor.js" />
+    <Content Include="Scripts\orchard-inlineedit-textarea.js" />
+    <Content Include="Scripts\orchard-inlineedit-textfield.js" />
     <Content Include="Scripts\orchard-inlineedit-tinymceeditor.js" />
     <Content Include="Scripts\orchard-inlineedit.js" />
     <Content Include="Scripts\orchard-inlineedit-defaulteditor.js" />
