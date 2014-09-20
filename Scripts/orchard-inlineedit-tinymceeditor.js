@@ -8,8 +8,12 @@
 
         if (tinymce != undefined) {
             console.log('Processing Content: TinyMce Editor triggering save');
-            var afterContent = tinymce.activeEditor.save();
-            $('#' + tinymce.activeEditor.id).parent('form').children('textarea').val(afterContent);
+            var editorFieldId = $(shapeEditor).find(".tinymce").attr("id");
+            var activeEditor = tinymce.get(editorFieldId);
+            if (activeEditor.isDirty()) {
+                var afterContent = activeEditor.save();
+                $('#' + activeEditor.id).parent('form').children('textarea').val(afterContent);
+            }
 
             console.log('Processing Content: TinyMce Editor triggering saved');
         }
@@ -60,13 +64,8 @@
     });
 
     $inlineedit.bind(inlineedit.events.onCancelling, function (event, shape, shapeEditor) {
-
-        console.log(shapeEditor);
-
         var editorFieldId = $(shapeEditor).find(".tinymce").attr("id");
         tinymce.get(editorFieldId).remove();
-
-
     });
 
     var editor = {
