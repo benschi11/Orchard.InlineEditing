@@ -8,11 +8,12 @@
 
         if (tinymce != undefined) {
             console.log('Processing Content: TinyMce Editor triggering save');
-            var editorFieldId = $(shapeEditor).find(".tinymce").attr("id");
-            var activeEditor = tinymce.get(editorFieldId);
-            if (activeEditor.isDirty()) {
-                var afterContent = activeEditor.save();
-                $('#' + activeEditor.id).parent('form').children('textarea').val(afterContent);
+            var activatedEditorId = $('#' + shapeEditor.attr("id") + ' div.tinymce').attr("id");
+            var activatedEditor = tinymce.editors[activatedEditorId];
+
+            if (activatedEditor.isDirty()) {
+                var afterContent = activatedEditor.save();
+                $('#' + activatedEditorId).parent('form').children('textarea').val(afterContent);
             }
 
             console.log('Processing Content: TinyMce Editor triggering saved');
