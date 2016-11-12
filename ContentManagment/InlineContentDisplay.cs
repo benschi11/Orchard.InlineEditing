@@ -94,7 +94,7 @@ namespace Orchard.InlineEditing.ContentManagment {
             var theme = workContext.CurrentTheme;
             var shapeTable = _shapeTableLocator.Value.Lookup(theme.Id);
 
-            var context = new UpdateEditorContext(itemShape, content, updateModel, string.Empty, _shapeFactory, shapeTable);
+            var context = new UpdateEditorContext(itemShape, content, updateModel, string.Empty, _shapeFactory, shapeTable, string.Empty);
 
             if (string.Equals(modelType, "Part", StringComparison.OrdinalIgnoreCase)) {
                 var drivers = FindPartDrivers(partTypeName);

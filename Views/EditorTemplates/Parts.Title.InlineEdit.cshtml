@@ -5,31 +5,40 @@
 @{
     var titlePart = (TitlePart)Model.DisplayShape.ContentPart;
     var shellDescriptor = WorkContext.Resolve<ShellDescriptor>();
-
-
 }
 
 
 
 
-@using (Html.InlineEdit(this))
-{
+@using (Html.InlineEdit(this)) {
+
 
     <script type="text/javascript">
         var mediaPickerEnabled = @(shellDescriptor.Features.Any(x => x.Name == "Orchard.MediaPicker") ? "true" : "false");
         var mediaLibraryEnabled = @(shellDescriptor.Features.Any(x => x.Name == "Orchard.MediaLibrary") ? "true" : "false");
-        var directionality = '@Html.Directionality((IContent)Model.ContentItem)';
+        @*var directionality = '@Html.Directionality((IContent)Model.ContentItem)';*@
     </script>
 
     Script.Require("OrchardTinyMce");
     Script.Include("orchard-inlineedit-textfield.js");
 
+
+    @*<fieldset>
+            <label for="Title_Title">@T("Title")</label>
+            @Html.TextBox("Title", titlePart.Title, new { @class = "large text", autofocus = "autofocus" })
+            <span class="hint">@T("You must provide a title for this content item")</span>
+        </fieldset>*@
+
     @Html.TextBox("Title", titlePart.Title, new Dictionary<string, object> {
         {"style", "display:none"}}
      );
 
+    @*@Html.TextBox("Title", (string)titlePart.Title,
+        new Dictionary<string, object> {
+           {"style", "display:none"}
+        })*@
     <h1>
-        <div class="html tinymce" style="width:100%" id="@Html.Id("Title")" data-fieldid="Title_Title">
+        <div class="html tinymce" style="width:100%" id="@Html.Id("Title")" data-fieldId="Title_Title">
             @titlePart.Title
         </div>
     </h1>

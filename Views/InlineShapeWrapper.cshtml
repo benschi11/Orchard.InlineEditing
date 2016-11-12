@@ -9,10 +9,10 @@
     Script.Require("InlineEdit");
 
     var metadata = ((Shape)Model).Metadata;
-    
+
     Model.Classes.Add("widget-control");
     Model.Classes.Add("shape");
-    
+
     if (string.IsNullOrWhiteSpace(html)) {
         Model.Classes.Add("nocontent");
     }
@@ -23,7 +23,7 @@
     var contentPart = Model.ContentPart as ContentPart;
     var contentField = Model.ContentField as ContentField;
     string editUrl = "";
-    
+
     if (contentPart != null && contentField == null) {
         editUrl = Url.GetEditShape((int)Model.ContentItem.Id, (string)Model.Metadata.Type);
     }
@@ -32,7 +32,7 @@
         editUrl = Url.GetEditShape((int)Model.ContentItem.Id, (string)Model.Metadata.Type, (string)contentField.Name);
         Model.Classes.Add("shape-" + (string) contentField.Name.ToLowerInvariant());
     }
-    
+
     var tag = Tag(Model, "div");
 }
 

@@ -57,7 +57,8 @@
                 menubar: false,
                 statusbar: false,
                 skin: 'orchardlightgray',
-                inline: true
+                inline: true,
+                language: "de"
             });
         }
 
